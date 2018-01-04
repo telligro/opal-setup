@@ -1,0 +1,47 @@
+{
+  "name": "@torpadev/orpa-setup",
+  "version": "0.1.6",
+  "description": "A wrapper package to install node-red and ORPA nodes",
+  "main": "setup.js",
+  "preferGlobal": true,
+  "bin": {
+    "orpa-run": "run.js",
+    "orpa-setup": "setup-orpa-nodes.js"
+  },
+  "keywords": [
+    "ORPA"
+  ],
+  "author": "Shiva Kumar Madhavan <shiva.madhavan@gmail.com>",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "@torpadev/orpa-node-control-flow": "~0.1.0",
+    "@torpadev/orpa-node-database": "~0.1.0",
+    "@torpadev/orpa-node-email": "~0.1.0",
+    "@torpadev/orpa-node-ftp": "~0.1.0",
+    "@torpadev/orpa-node-msexcel": "~0.1.0",
+    "@torpadev/orpa-node-red": "~0.1.0",
+    "@torpadev/orpa-node-selenium-webdriver": "~0.1.0",
+    "@torpadev/orpa-node-soap": "~0.1.0",
+    "extract-zip": "^1.6.6",
+    "fs-extra": "^4.0.2",
+    "glob": "^7.1.2",
+    "node-red-dashboard": "~2.6.1",
+    "shelljs": "^0.7.8",
+    "verror": "^1.10.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "lerna": "^2.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://smadhavan@bitbucket.org/torpa/orpa-setup.git"
+  },
+  "homepage": "https://bitbucket.org/torpa/orpa-setup#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "orpa-setup",
+    "start": "orpa-run",
+    "xpostversion": "git push && git push --tags && npm publish"
+  }
+}
