@@ -1,12 +1,6 @@
 ## Getting Started
 - Open a shell with admin privileges
 - Navigate to a installation directory (Create a new one if needed)
-- Login to npm with your credentials (request access if you are not added to the @torpadev org)
-- Login to NPM
-
-```
-npm login
-```
 - Install and Start ORPA
 ```
 npm install @torpadev/orpa-setup
