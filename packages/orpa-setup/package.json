@@ -19,7 +19,7 @@
     "@torpadev/orpa-node-email": "~0.2.0",
     "@torpadev/orpa-node-ftp": "~0.2.0",
     "@torpadev/orpa-node-msexcel": "~0.2.0",
-    "@torpadev/orpa-node-red": "~0.1.9",
+    "@torpadev/orpa-node-red": "~0.2.0",
     "@torpadev/orpa-node-selenium-webdriver": "~0.2.0",
     "@torpadev/orpa-node-soap": "~0.2.0",
     "extract-zip": "^1.6.6",
