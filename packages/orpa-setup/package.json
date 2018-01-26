@@ -22,6 +22,7 @@
     "@torpadev/orpa-node-red": "~0.2.0",
     "@torpadev/orpa-node-selenium-webdriver": "~0.2.0",
     "@torpadev/orpa-node-soap": "~0.2.0",
+    "@torpadev/opal-node-pdfreader": "~0.1.0",
     "extract-zip": "^1.6.6",
     "fs-extra": "^4.0.2",
     "glob": "^7.1.2",
