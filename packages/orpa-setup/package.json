@@ -1,6 +1,6 @@
 {
   "name": "@torpadev/orpa-setup",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "A wrapper package to install node-red and ORPA nodes",
   "main": "setup.js",
   "preferGlobal": true,
@@ -14,6 +14,7 @@
   "author": "Shiva Kumar Madhavan <shiva.madhavan@gmail.com>",
   "license": "GPL-3.0",
   "dependencies": {
+    "@torpadev/opal-node-pdfreader": "~0.1.0",
     "@torpadev/orpa-node-control-flow": "~0.2.0",
     "@torpadev/orpa-node-database": "~0.2.0",
     "@torpadev/orpa-node-email": "~0.2.0",
@@ -22,7 +23,6 @@
     "@torpadev/orpa-node-red": "~0.2.0",
     "@torpadev/orpa-node-selenium-webdriver": "~0.2.0",
     "@torpadev/orpa-node-soap": "~0.2.0",
-    "@torpadev/opal-node-pdfreader": "~0.1.0",
     "extract-zip": "^1.6.6",
     "fs-extra": "^4.0.2",
     "glob": "^7.1.2",
