@@ -29,7 +29,7 @@ fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, co
 
     var packageJSON = JSON.parse(content);
     var orpaNodes = Object.keys(packageJSON.dependencies)
-        .filter(dep => dep.indexOf('@torpadev/orpa-node-') !== -1 && dep != '@torpadev/orpa-node-red')
+        .filter(dep => (dep.indexOf('@torpadev/opal-node-') !== -1 || dep.indexOf('@torpadev/orpa-node-')) !== -1 && dep != '@torpadev/orpa-node-red')
         .map(dep => dep.replace('@torpadev/', ''));
 
     // console.log(__dirname);
