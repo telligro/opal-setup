@@ -1,6 +1,6 @@
 {
   "name": "@torpadev/orpa-setup",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "A wrapper package to install node-red and ORPA nodes",
   "main": "setup.js",
   "preferGlobal": true,
