@@ -19,8 +19,16 @@
  */
 console.log('Launching Node-RED with ORPA Nodes');
 var child_process = require('child_process');
-const path = require('path')
+const path = require('path');
+var shell = require('shelljs');
 var child;
+
+var nodeRedHome = path.join(process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'], '.node-red');
+var globalConfigFile = path.join(nodeRedHome,".config.json");
+
+var webdriversHome = path.join(__dirname, 'webdrivers');
+process.env.PATH += path.delimiter + webdriversHome
+
 try{
 child = require('child_process').execFile('node', [ 
     'node_modules/@torpadev/orpa-node-red/red.js']); 

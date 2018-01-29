@@ -25,6 +25,13 @@ var shell = require('shelljs');
 var fs = require('fs-extra');
 // console.log(__dirname);
 // console.log(process.cwd());
+
+var webdriversHome = path.join(__dirname, 'webdrivers');
+shell.mkdir('-p', webdriversHome);
+shell.exec('webdriver-manager update --ie --out_dir ' + webdriversHome)
+var chromeDriverPath = path.join(webdriversHome, 'chromedriver.exe');
+shell.cp(path.join(webdriversHome, 'chromedriver_*.exe'), chromeDriverPath);
+
 fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, content) => {
 
     var packageJSON = JSON.parse(content);

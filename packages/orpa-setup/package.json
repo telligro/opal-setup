@@ -28,7 +28,8 @@
     "glob": "^7.1.2",
     "node-red-dashboard": "~2.6.1",
     "shelljs": "^0.7.8",
-    "verror": "^1.10.0"
+    "verror": "^1.10.0",
+    "webdriver-manager": "~12.0.6"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
@@ -36,13 +37,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://smadhavan@bitbucket.org/torpa/orpa-setup.git"
+    "url": "git+https://github.com/telligro/orpa-setup.git"
   },
-  "homepage": "https://bitbucket.org/torpa/orpa-setup#readme",
+  "homepage": "https://github.com/telligro/orpa-setup#readme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "orpa-setup",
     "start": "orpa-run",
     "xpostversion": "git push && git push --tags && npm publish"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
