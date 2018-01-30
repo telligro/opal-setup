@@ -1,4 +1,23 @@
 ## Getting Started
+
+#### Requirements
+
+**node**: 8.9.x LTS  
+**npm**: 5.5.x  
+**Git**: 1.8+  
+
+**Note**: The current release requires Git to be available on your environment path. Please refer to the Git Setup section.
+
+#### Git Setup
+
+For instructioons on setting up git on (Windows/Linux/Mac OSX) refer to link below    
+[Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
+On Windows, you can use a portable version of git available from
+https://git-scm.com/download/win  
+If portable git used ensure that git.exe is available on your path.
+
+### Installation
 - Open a shell with admin privileges
 - Navigate to a installation directory (Create a new one if needed)
 - Install and Start ORPA
