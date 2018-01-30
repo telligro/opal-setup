@@ -23,6 +23,7 @@ var child_process = require('child_process');
 const path = require('path')
 var shell = require('shelljs');
 var fs = require('fs-extra');
+let child;
 // console.log(__dirname);
 // console.log(process.cwd());
 
@@ -54,6 +55,25 @@ fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, co
         console.log('npm link %s from %s', orpaNode, nodeRedHome);
         shell.cd(nodeRedHome);
         shell.exec('npm link ' + '@torpadev/' + orpaNode);
-
+        
     });
+    try {
+        child = require('child_process').execFile('node', [
+            path.join(__dirname,'..','orpa-node-red/red.js')]);
+        // use event hooks to provide a callback to execute when data are available: 
+
+        child.stdout.on('data', function (data) {
+            if(data.indexOf('Started flows')!==-1){
+                console.log('Installation Complete');
+                process.exit(0);
+            }
+            // process.stdout.write(data.toString());
+        });
+
+        child.stderr.on('data', function (data) {
+            process.stdout.write(data.toString());
+        });
+    } catch (ex) {
+        process.stdout.write(ex.toString());
+    }
 });
