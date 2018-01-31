@@ -17,7 +17,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with OPAL.  If not, see <http://www.gnu.org/licenses/>.
  */
-console.time('Setup Node-RED dashboard');
+console.log('Setup Node-RED dashboard');
 
 var child_process = require('child_process');
 const path = require('path')
@@ -34,7 +34,11 @@ var chromeDriverPath = path.join(webdriversHome, 'chromedriver.exe');
 shell.cp(path.join(webdriversHome, 'chromedriver_*.exe'), chromeDriverPath);
 
 fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, content) => {
-
+    console.log('Reading package');
+    if(err){
+        console.error(err);
+        process.exit(1);
+    }
     var packageJSON = JSON.parse(content);
     var orpaNodes = Object.keys(packageJSON.dependencies)
         .filter(dep => (dep.indexOf('@torpadev/opal-node-') !== -1 || dep.indexOf('@torpadev/orpa-node-')) !== -1 && dep != '@torpadev/orpa-node-red')
