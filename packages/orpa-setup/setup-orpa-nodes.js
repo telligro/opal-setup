@@ -30,8 +30,8 @@ let child;
 var webdriversHome = path.join(__dirname, 'webdrivers');
 shell.mkdir('-p', webdriversHome);
 shell.exec('webdriver-manager update --ie --out_dir ' + webdriversHome)
-var chromeDriverPath = path.join(webdriversHome, 'chromedriver.exe');
-shell.cp(path.join(webdriversHome, 'chromedriver_*.exe'), chromeDriverPath);
+var chromeDriverPath = path.join(webdriversHome, process.platform === 'win32' ? 'chromedriver.exe' : 'chromedriver' );
+shell.cp(path.join(webdriversHome, 'chromedriver_*' + process.platform === 'win32' ? '.exe' : ''), chromeDriverPath);
 
 fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, content) => {
     console.log('Reading package');
@@ -46,7 +46,7 @@ fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, co
 
     // console.log(__dirname);
     // console.log(process.cwd());
-    var nodeRedHome = path.join(process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'], '.node-red');
+    var nodeRedHome = path.join(process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'], '.node-red');
     shell.mkdir('-p', nodeRedHome);
     orpaNodes.forEach(orpaNode => {
         console.log('Linking module:%s', orpaNode);
