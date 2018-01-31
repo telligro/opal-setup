@@ -24,14 +24,27 @@ const path = require('path')
 var shell = require('shelljs');
 var fs = require('fs-extra');
 let child;
-// console.log(__dirname);
-// console.log(process.cwd());
+console.log(__dirname);
+console.log(process.cwd());
 
 var webdriversHome = path.join(__dirname, 'webdrivers');
 shell.mkdir('-p', webdriversHome);
 shell.exec('webdriver-manager update --ie --out_dir ' + webdriversHome)
 var chromeDriverPath = path.join(webdriversHome, process.platform === 'win32' ? 'chromedriver.exe' : 'chromedriver' );
 shell.cp(path.join(webdriversHome, 'chromedriver_*' + process.platform === 'win32' ? '.exe' : ''), chromeDriverPath);
+
+function getOpalModulePath(modName) {
+    var modPath = path.join(__dirname, '..', modName);
+    if (!fs.existsSync(modPath)) {
+        console.log('Checking Local')
+        modPath = path.join(__dirname, 'node_modules', '@torpadev', modName);
+        if (!fs.existsSync(modPath)) {
+            console.error('OPAL nodes are missing. Setup will terminate');
+            return;
+        }
+    }
+    return modPath;
+}
 
 fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, content) => {
     console.log('Reading package');
@@ -50,8 +63,11 @@ fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, co
     shell.mkdir('-p', nodeRedHome);
     orpaNodes.forEach(orpaNode => {
         console.log('Linking module:%s', orpaNode);
-        var orpaNodePath = path.join(__dirname, '..', orpaNode);
-        
+        let orpaNodePath = getOpalModulePath(orpaNode);
+        if (undefined === orpaNodePath) {
+            console.error('OPAL nodes are missing. Setup will terminate');
+            process.exit(1);
+        }
         console.log('npm link from %s', orpaNodePath);
         shell.cd(orpaNodePath);
         shell.exec('npm link');
@@ -62,14 +78,23 @@ fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, co
         
     });
     try {
+        let nodeRedPath = getOpalModulePath('orpa-node-red');
+        if (undefined === nodeRedPath) {
+            console.error('OPAL node-red is missing. Setup will terminate');
+            process.exit(1);
+        }
         child = require('child_process').execFile('node', [
-            path.join(__dirname,'..','orpa-node-red/red.js')]);
+            path.join(nodeRedPath, 'red.js')]);
         // use event hooks to provide a callback to execute when data are available: 
 
         child.stdout.on('data', function (data) {
-            if(data.indexOf('Started flows')!==-1){
+            if (data.indexOf('Server now running')!==-1){
                 console.log('Installation Complete');
                 process.exit(0);
+            } else if (data.indexOf('error')!==-1){
+                process.stdout.write(data.toString());
+                console.error('Error in setup. Will terminate.');
+                process.exit(1);
             }
             // process.stdout.write(data.toString());
         });
