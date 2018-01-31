@@ -19,22 +19,24 @@
  */
 console.log('Setup Node-RED dashboard');
 
-var child_process = require('child_process');
+const child_process = require('child_process');
 const path = require('path')
-var shell = require('shelljs');
-var fs = require('fs-extra');
+const shell = require('shelljs');
+const fs = require('fs-extra');
 let child;
 console.log(__dirname);
 console.log(process.cwd());
 
-var webdriversHome = path.join(__dirname, 'webdrivers');
+let webdriversHome = path.join(__dirname, 'webdrivers');
 shell.mkdir('-p', webdriversHome);
-shell.exec('webdriver-manager update --ie --out_dir ' + webdriversHome)
-var chromeDriverPath = path.join(webdriversHome, process.platform === 'win32' ? 'chromedriver.exe' : 'chromedriver' );
-shell.cp(path.join(webdriversHome, 'chromedriver_*' + process.platform === 'win32' ? '.exe' : ''), chromeDriverPath);
+shell.exec('webdriver-manager update --ie --out_dir ' + webdriversHome);
+let chromeDriverName = process.platform === 'win32' ? 'chromedriver.exe' : 'chromedriver';
+let chromeDriverPath = path.join(webdriversHome, chromeDriverName);
+let chromeDriverDownloadedExt = process.platform === 'win32' ? '*.exe' : '?.??';
+shell.cp(path.join(webdriversHome, 'chromedriver_' + chromeDriverDownloadedExt), chromeDriverPath);
 
 function getOpalModulePath(modName) {
-    var modPath = path.join(__dirname, '..', modName);
+    let modPath = path.join(__dirname, '..', modName);
     if (!fs.existsSync(modPath)) {
         console.log('Checking Local')
         modPath = path.join(__dirname, 'node_modules', '@torpadev', modName);
