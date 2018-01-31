@@ -93,8 +93,8 @@ fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, co
                 process.exit(0);
             } else if (data.indexOf('error')!==-1){
                 process.stdout.write(data.toString());
-                console.error('Error in setup. Will terminate.');
-                process.exit(1);
+                console.warn('There were error during setup. Setup could not complete.');
+                process.exit(0);
             }
             // process.stdout.write(data.toString());
         });
