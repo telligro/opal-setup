@@ -17,24 +17,43 @@
  *  You should have received a copy of the GNU General Public License
  *  along with OPAL.  If not, see <http://www.gnu.org/licenses/>.
  */
-console.time('Setup Node-RED dashboard');
+console.log('Setup Node-RED dashboard');
 
-var child_process = require('child_process');
+const child_process = require('child_process');
 const path = require('path')
-var shell = require('shelljs');
-var fs = require('fs-extra');
+const shell = require('shelljs');
+const fs = require('fs-extra');
 let child;
-// console.log(__dirname);
-// console.log(process.cwd());
+console.log(__dirname);
+console.log(process.cwd());
 
-var webdriversHome = path.join(__dirname, 'webdrivers');
+let webdriversHome = path.join(__dirname, 'webdrivers');
 shell.mkdir('-p', webdriversHome);
-shell.exec('webdriver-manager update --ie --out_dir ' + webdriversHome)
-var chromeDriverPath = path.join(webdriversHome, 'chromedriver.exe');
-shell.cp(path.join(webdriversHome, 'chromedriver_*.exe'), chromeDriverPath);
+shell.exec('webdriver-manager update --ie --out_dir ' + webdriversHome);
+let chromeDriverName = process.platform === 'win32' ? 'chromedriver.exe' : 'chromedriver';
+let chromeDriverPath = path.join(webdriversHome, chromeDriverName);
+let chromeDriverDownloadedExt = process.platform === 'win32' ? '*.exe' : '?.??';
+shell.cp(path.join(webdriversHome, 'chromedriver_' + chromeDriverDownloadedExt), chromeDriverPath);
+
+function getOpalModulePath(modName) {
+    let modPath = path.join(__dirname, '..', modName);
+    if (!fs.existsSync(modPath)) {
+        console.log('Checking Local')
+        modPath = path.join(__dirname, 'node_modules', '@torpadev', modName);
+        if (!fs.existsSync(modPath)) {
+            console.error('OPAL nodes are missing. Setup will terminate');
+            return;
+        }
+    }
+    return modPath;
+}
 
 fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, content) => {
-
+    console.log('Reading package');
+    if(err){
+        console.error(err);
+        process.exit(1);
+    }
     var packageJSON = JSON.parse(content);
     var orpaNodes = Object.keys(packageJSON.dependencies)
         .filter(dep => (dep.indexOf('@torpadev/opal-node-') !== -1 || dep.indexOf('@torpadev/orpa-node-')) !== -1 && dep != '@torpadev/orpa-node-red')
@@ -42,12 +61,15 @@ fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, co
 
     // console.log(__dirname);
     // console.log(process.cwd());
-    var nodeRedHome = path.join(process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'], '.node-red');
+    var nodeRedHome = path.join(process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'], '.node-red');
     shell.mkdir('-p', nodeRedHome);
     orpaNodes.forEach(orpaNode => {
         console.log('Linking module:%s', orpaNode);
-        var orpaNodePath = path.join(__dirname, '..', orpaNode);
-        
+        let orpaNodePath = getOpalModulePath(orpaNode);
+        if (undefined === orpaNodePath) {
+            console.error('OPAL nodes are missing. Setup will terminate');
+            process.exit(1);
+        }
         console.log('npm link from %s', orpaNodePath);
         shell.cd(orpaNodePath);
         shell.exec('npm link');
@@ -58,13 +80,22 @@ fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, co
         
     });
     try {
+        let nodeRedPath = getOpalModulePath('orpa-node-red');
+        if (undefined === nodeRedPath) {
+            console.error('OPAL node-red is missing. Setup will terminate');
+            process.exit(1);
+        }
         child = require('child_process').execFile('node', [
-            path.join(__dirname,'..','orpa-node-red/red.js')]);
+            path.join(nodeRedPath, 'red.js')]);
         // use event hooks to provide a callback to execute when data are available: 
 
         child.stdout.on('data', function (data) {
-            if(data.indexOf('Started flows')!==-1){
+            if (data.indexOf('Server now running')!==-1){
                 console.log('Installation Complete');
+                process.exit(0);
+            } else if (data.indexOf('error')!==-1){
+                process.stdout.write(data.toString());
+                console.warn('There were error during setup. Setup could not complete.');
                 process.exit(0);
             }
             // process.stdout.write(data.toString());

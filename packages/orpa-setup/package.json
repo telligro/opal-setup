@@ -42,7 +42,7 @@
   "homepage": "https://github.com/telligro/orpa-setup#readme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "orpa-setup",
+    "postinstall": "node setup-orpa-nodes.js",
     "start": "orpa-run",
     "xpostversion": "git push && git push --tags && npm publish",
     "orpa-setup-dev": "node setup-orpa-nodes.js",

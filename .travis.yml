@@ -1,0 +1,21 @@
+sudo: false
+language: node_js
+env:
+- CXX="g++-4.8" NODE_FOLDER=packages/orpa-setup
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
+    - gcc-4.8
+node_js:
+- '8'
+script: npm install
+before_install: cd $NODE_FOLDER
+notifications:
+  hipchat:
+    rooms:
+      secure: f3e97IjTqFs1F2ncQCYsGTOLEjX015DJAwNbTR1WQ6sm7ywDsxOvhswYMWhn9ryqjUsLJ2Rbo/XsrvUChqQdhNanGaRz8BGKfdOpr6mUWFqLco4pen55xzvoXBgWJi5y2SiLEiICeNVseVvaxmKskcirETOUJ4i24armc/LvGD1n1EoYtEZvioSQpL49X8lyQlO3Rp1hZtLBByMXQtpbSie1Tr+YPVcD+3KSI4IWhS2FdLwCJ43++x60BF1Bk81Gui2HgdI9c/aDcctwa5cvtyS2M3zs/vXZ8CFUcUYpvIZFWTm0+Y19qPwr+rJhMerSjmEgSvavHT2u45R4Eik4ayU2/UGj+0+5NGWxsvu6+V9z1xGSNO8klY5h70vQNghxBNmfIxh8aLRiwKtflSHyWnpV0WpuzimsnIPrFcDroNWCDuP+nhA1ThE4b0FqewkKqre5AKsM8i9YJAxUgBqVK16hEGRk7RYcKeai+RNkGkSvvIW+JpUlXrF5bBSfYLXWC2wAwpTtZXE5hIg8DS1sy/Hi/6SxkZTiQnDl1on48VwattNSpdwyYnd55Ijp4WbUjokp6SYtOhmIrDMXQXyyMFjVuEsOxbe7lz4l1xmOKZYDg1d7JewGgJHr7+1o69T38YggpAX6h1YPx8Gb3qhBS/aOS793srpnIkApaHIwvk8=
+  slack:
+    secure: uOog8RuTwBvGXygLE+KnGcmE4ld8ckGhx5ercrdIPNCrEGfj2c+uu4fzs+E9OXJmiOZ3ffdndryXEpGdCkn7TvmfzAxDwKNKrYDuZ6NBiUkvghiExYdjgTqNmqGn0QNpd17V71Zt+ZIH/Oght9JYTd1xbH1Joew6be99iBaT+Tpqpw4gNMAP7QTakDop/bbLJ0WDScqP/IqYAd6EXovIvRLOtssc2yG2cN//dRIaRE8spGRgXNSlAymT2P6DUb1KLS/TTXF7SsIDMKbpBY+YmP7G44LYS6YxxM/bct2NDAcedBqxNVEe81ZGf5d+V71xBjzSoWyBjFU0nyVybAvQj1RkJVxYH+qIhTyX1sGC9AaaTWWjZomcFKhCfeYllseepdfNUzKQ5/P4qPyJo8DKs2BTlHdtwphps7W93Un2dr/hfux4uEiZ3hN5uB3jhsgQoLJdKKacVAAMQjAFEvSkdtNMXdz4Uww9wdU8GsV0PL9JlM+v4UWi668giixq1hQ9gTWxB8EFbr7778HoFttAlukcncGV4OVa/rlSuiHLrmXlwtNDkDpuaHVY47Wi2lRLbd8gdS79zLkD2a1nClxlsTWDIdIlH25k4BZWM1BPwXpdFApdAD+cFomptj0eswuhVh22V+oW21DaPDDHOXiwoJvI13+E6NRKD19+Z1ZuXuU=
