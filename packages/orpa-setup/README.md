@@ -1,5 +1,5 @@
+[![Build Status](https://travis-ci.org/telligro/orpa-node-red.svg?branch=master)](https://travis-ci.org/telligro/orpa-node-red) [![npm (scoped)](https://img.shields.io/npm/v/@torpadev/orpa-setup.svg)](https://www.npmjs.com/package/@torpadev/orpa-setup) [![license](https://img.shields.io/github/license/telligro/orpa-setup.svg)](LICENSE)
 ## Getting Started
-
 #### Requirements
 
 **node**: 8.9.x LTS  
@@ -10,7 +10,7 @@
 
 #### Git Setup
 
-For instructioons on setting up git on (Windows/Linux/Mac OSX) refer to link below    
+For instructions on setting up git on (Windows/Linux/Mac OSX) refer to link below    
 [Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 On Windows, you can use a portable version of git available from
