@@ -17,7 +17,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with OPAL.  If not, see <http://www.gnu.org/licenses/>.
  */
-console.log('Setup Node-RED dashboard');
+console.log('Setup Node-RED with OPAL nodes');
 
 const child_process = require('child_process');
 const path = require('path')
@@ -55,7 +55,7 @@ fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, co
         process.exit(1);
     }
     var packageJSON = JSON.parse(content);
-    var orpaNodes = Object.keys(packageJSON.dependencies)
+    var opalNodes = Object.keys(packageJSON.dependencies)
         .filter(dep => (dep.indexOf('@torpadev/opal-node-') !== -1 || dep.indexOf('@torpadev/orpa-node-')) !== -1 && dep != '@torpadev/orpa-node-red')
         .map(dep => dep.replace('@torpadev/', ''));
 
@@ -63,20 +63,20 @@ fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, co
     // console.log(process.cwd());
     var nodeRedHome = path.join(process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'], '.node-red');
     shell.mkdir('-p', nodeRedHome);
-    orpaNodes.forEach(orpaNode => {
-        console.log('Linking module:%s', orpaNode);
-        let orpaNodePath = getOpalModulePath(orpaNode);
-        if (undefined === orpaNodePath) {
+    opalNodes.forEach(opalNode => {
+        console.log('Linking module:%s', opalNode);
+        let opalNodePath = getOpalModulePath(opalNode);
+        if (undefined === opalNodePath) {
             console.error('OPAL nodes are missing. Setup will terminate');
             process.exit(1);
         }
-        console.log('npm link from %s', orpaNodePath);
-        shell.cd(orpaNodePath);
+        console.log('npm link from %s', opalNodePath);
+        shell.cd(opalNodePath);
         shell.exec('npm link');
 
-        console.log('npm link %s from %s', orpaNode, nodeRedHome);
+        console.log('npm link %s from %s', opalNode, nodeRedHome);
         shell.cd(nodeRedHome);
-        shell.exec('npm link ' + '@torpadev/' + orpaNode);
+        shell.exec('npm link ' + '@torpadev/' + opalNode);
         
     });
     try {

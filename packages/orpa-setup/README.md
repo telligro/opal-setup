@@ -20,7 +20,7 @@ If portable git used ensure that git.exe is available on your path.
 ### Installation
 - Open a shell with admin privileges
 - Navigate to a installation directory (Create a new one if needed)
-- Install and Start ORPA
+- Install and Start OPAL-Node-RED
 ```
 npm install @torpadev/orpa-setup
 node_modules\.bin\orpa-run.cmd
@@ -29,13 +29,13 @@ node_modules\.bin\orpa-run.cmd
 
 ## Developement setup
 
-#### Refer to the Development setup section from [ORPA-Node-RED](https://github.com/telligro/orpa-node-red)
+#### Refer to the Development setup section from [OPAL-Node-RED](https://github.com/telligro/orpa-node-red)
 
 ## Contributing
 Contact support@telligro.com
 ## Authors
 
-ORPA-Node-RED is a fork of Node-RED for the [OPAL Framework](https://www.telligro.com)
+OPAL-Node-RED is a fork of Node-RED for the [OPAL Framework](https://www.telligro.com)
 
 The OPAL Node-RED fork is maintained by [Telligro Pte Ltd](https://www.telligro.com)  
 The OPAL Nodes are created and mantained by [Telligro Pte Ltd](https://www.telligro.com)

@@ -1,7 +1,7 @@
 {
   "name": "@torpadev/orpa-setup",
   "version": "0.2.11",
-  "description": "A wrapper package to install node-red and ORPA nodes",
+  "description": "A wrapper package to install node-red and OPAL nodes",
   "main": "setup.js",
   "preferGlobal": true,
   "bin": {
@@ -9,7 +9,7 @@
     "orpa-setup": "setup-orpa-nodes.js"
   },
   "keywords": [
-    "ORPA"
+    "OPAL"
   ],
   "author": "Shiva Kumar Madhavan <shiva.madhavan@gmail.com>",
   "license": "GPL-3.0",
