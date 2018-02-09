@@ -17,7 +17,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with OPAL.  If not, see <http://www.gnu.org/licenses/>.
  */
-console.log('Launching Node-RED with ORPA Nodes');
+console.log('Launching Node-RED with OPAL Nodes');
 var child_process = require('child_process');
 const path = require('path');
 var shell = require('shelljs');
@@ -31,7 +31,7 @@ process.env.PATH += path.delimiter + webdriversHome
 
 try{
 child = require('child_process').execFile('node', [ 
-    'node_modules/@torpadev/orpa-node-red/red.js']); 
+    'node_modules/@telligro/opal-node-red/red.js']); 
 // use event hooks to provide a callback to execute when data are available: 
 
 child.stdout.on('data', function(data) {
