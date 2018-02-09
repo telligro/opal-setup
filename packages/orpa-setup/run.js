@@ -31,7 +31,7 @@ process.env.PATH += path.delimiter + webdriversHome
 
 try{
 child = require('child_process').execFile('node', [ 
-    'node_modules/@torpadev/orpa-node-red/red.js']); 
+    'node_modules/@torpadev/opal-node-red/red.js']); 
 // use event hooks to provide a callback to execute when data are available: 
 
 child.stdout.on('data', function(data) {

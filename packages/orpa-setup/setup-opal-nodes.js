@@ -56,7 +56,7 @@ fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, co
     }
     var packageJSON = JSON.parse(content);
     var opalNodes = Object.keys(packageJSON.dependencies)
-        .filter(dep => (dep.indexOf('@torpadev/opal-node-') !== -1 || dep.indexOf('@torpadev/orpa-node-')) !== -1 && dep != '@torpadev/orpa-node-red')
+        .filter(dep => (dep.indexOf('@torpadev/opal-node-') !== -1 || dep.indexOf('@torpadev/opal-node-')) !== -1 && dep != '@torpadev/opal-node-red')
         .map(dep => dep.replace('@torpadev/', ''));
 
     // console.log(__dirname);
@@ -80,7 +80,7 @@ fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, co
         
     });
     try {
-        let nodeRedPath = getOpalModulePath('orpa-node-red');
+        let nodeRedPath = getOpalModulePath('opal-node-red');
         if (undefined === nodeRedPath) {
             console.error('OPAL node-red is missing. Setup will terminate');
             process.exit(1);

@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/telligro/orpa-node-red.svg?branch=master)](https://travis-ci.org/telligro/orpa-node-red) [![npm (scoped)](https://img.shields.io/npm/v/@torpadev/orpa-setup.svg)](https://www.npmjs.com/package/@torpadev/orpa-setup) [![license](https://img.shields.io/github/license/telligro/orpa-setup.svg)](LICENSE)
+[![Build Status](https://travis-ci.org/telligro/opal-node-red.svg?branch=master)](https://travis-ci.org/telligro/opal-node-red) [![npm (scoped)](https://img.shields.io/npm/v/@torpadev/opal-setup.svg)](https://www.npmjs.com/package/@torpadev/opal-setup) [![license](https://img.shields.io/github/license/telligro/opal-setup.svg)](LICENSE)
 ## Getting Started
 #### Requirements
 
@@ -22,14 +22,14 @@ If portable git used ensure that git.exe is available on your path.
 - Navigate to a installation directory (Create a new one if needed)
 - Install and Start OPAL-Node-RED
 ```
-npm install @torpadev/orpa-setup
-node_modules\.bin\orpa-run.cmd
+npm install @torpadev/opal-setup
+node_modules\.bin\opal-run.cmd
 ```
 - Open chrome browser and navigate to http://localhost:1880 to access the Editor
 
 ## Developement setup
 
-#### Refer to the Development setup section from [OPAL-Node-RED](https://github.com/telligro/orpa-node-red)
+#### Refer to the Development setup section from [OPAL-Node-RED](https://github.com/telligro/opal-node-red)
 
 ## Contributing
 Contact support@telligro.com
