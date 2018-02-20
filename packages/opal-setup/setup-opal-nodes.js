@@ -39,7 +39,7 @@ function getOpalModulePath(modName) {
     let modPath = path.join(__dirname, '..', modName);
     if (!fs.existsSync(modPath)) {
         console.log('Checking Local')
-        modPath = path.join(__dirname, 'node_modules', '@telligro', modName);
+        modPath = path.join(__dirname, 'node_modules', modName);
         if (!fs.existsSync(modPath)) {
             console.error('OPAL nodes are missing. Setup will terminate');
             return;
@@ -56,8 +56,8 @@ fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, co
     }
     var packageJSON = JSON.parse(content);
     var opalNodes = Object.keys(packageJSON.dependencies)
-        .filter(dep => (dep.indexOf('@telligro/opal-node-') !== -1 || dep.indexOf('@telligro/opal-node-')) !== -1 && dep != '@telligro/opal-node-red')
-        .map(dep => dep.replace('@telligro/', ''));
+        .filter(dep => (dep.indexOf('opal-node-') !== -1 || dep.indexOf('opal-node-')) !== -1 && dep != 'opal-node-red')
+        .map(dep => dep.replace('', ''));
 
     // console.log(__dirname);
     // console.log(process.cwd());
@@ -76,7 +76,7 @@ fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, co
 
         console.log('npm link %s from %s', opalNode, nodeRedHome);
         shell.cd(nodeRedHome);
-        shell.exec('npm link ' + '@telligro/' + opalNode);
+        shell.exec('npm link ' + '' + opalNode);
         
     });
     try {
