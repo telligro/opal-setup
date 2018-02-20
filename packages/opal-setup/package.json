@@ -1,6 +1,6 @@
 {
   "name": "opal-setup",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "A wrapper package to install OPAL Node-RED and OPAL nodes",
   "main": "setup.js",
   "preferGlobal": true,
