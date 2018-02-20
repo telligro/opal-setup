@@ -35,24 +35,6 @@
     "grunt": "^1.0.1",
     "lerna": "^2.4.0"
   },
-  "bundledDependencies": [
-    "opal-node-control-flow",
-    "opal-node-database",
-    "opal-node-email",
-    "opal-node-ftp",
-    "opal-node-msexcel",
-    "opal-node-pdfreader",
-    "opal-node-red",
-    "opal-node-soap",
-    "opal-node-ui-web-browser",
-    "extract-zip",
-    "fs-extra",
-    "glob",
-    "node-red-dashboard",
-    "shelljs",
-    "verror",
-    "webdriver-manager"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/telligro/opal-setup.git"
