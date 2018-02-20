@@ -62,23 +62,23 @@ fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, co
     // console.log(__dirname);
     // console.log(process.cwd());
     var nodeRedHome = path.join(process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'], '.node-red');
-    shell.mkdir('-p', nodeRedHome);
-    opalNodes.forEach(opalNode => {
-        console.log('Linking module:%s', opalNode);
-        let opalNodePath = getOpalModulePath(opalNode);
-        if (undefined === opalNodePath) {
-            console.error('OPAL nodes are missing. Setup will terminate');
-            process.exit(1);
-        }
-        console.log('npm link from %s', opalNodePath);
-        shell.cd(opalNodePath);
-        shell.exec('npm link');
+    // shell.mkdir('-p', nodeRedHome);
+    // opalNodes.forEach(opalNode => {
+    //     console.log('Linking module:%s', opalNode);
+    //     let opalNodePath = getOpalModulePath(opalNode);
+    //     if (undefined === opalNodePath) {
+    //         console.error('OPAL nodes are missing. Setup will terminate');
+    //         process.exit(1);
+    //     }
+    //     console.log('npm link from %s', opalNodePath);
+    //     shell.cd(opalNodePath);
+    //     shell.exec('npm link');
 
-        console.log('npm link %s from %s', opalNode, nodeRedHome);
-        shell.cd(nodeRedHome);
-        shell.exec('npm link ' + '' + opalNode);
+    //     console.log('npm link %s from %s', opalNode, nodeRedHome);
+    //     shell.cd(nodeRedHome);
+    //     shell.exec('npm link ' + '' + opalNode);
         
-    });
+    // });
     try {
         let nodeRedPath = getOpalModulePath('opal-node-red');
         if (undefined === nodeRedPath) {
