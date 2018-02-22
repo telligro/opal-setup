@@ -79,32 +79,32 @@ fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, co
     //     shell.exec('npm link ' + '' + opalNode);
         
     // });
-    try {
-        let nodeRedPath = getOpalModulePath('opal-node-red');
-        if (undefined === nodeRedPath) {
-            console.error('OPAL node-red is missing. Setup will terminate');
-            process.exit(1);
-        }
-        child = require('child_process').execFile('node', [
-            path.join(nodeRedPath, 'red.js')]);
-        // use event hooks to provide a callback to execute when data are available: 
+    // try {
+    //     let nodeRedPath = getOpalModulePath('opal-node-red');
+    //     if (undefined === nodeRedPath) {
+    //         console.error('OPAL node-red is missing. Setup will terminate');
+    //         process.exit(1);
+    //     }
+    //     child = require('child_process').execFile('node', [
+    //         path.join(nodeRedPath, 'red.js')]);
+    //     // use event hooks to provide a callback to execute when data are available: 
 
-        child.stdout.on('data', function (data) {
-            if (data.indexOf('Server now running')!==-1){
-                console.log('Installation Complete');
-                process.exit(0);
-            } else if (data.indexOf('error')!==-1){
-                process.stdout.write(data.toString());
-                console.warn('There were error during setup. Setup could not complete.');
-                process.exit(0);
-            }
-            // process.stdout.write(data.toString());
-        });
+    //     child.stdout.on('data', function (data) {
+    //         if (data.indexOf('Server now running')!==-1){
+    //             console.log('Installation Complete');
+    //             process.exit(0);
+    //         } else if (data.indexOf('error')!==-1){
+    //             process.stdout.write(data.toString());
+    //             console.warn('There were error during setup. Setup could not complete.');
+    //             process.exit(0);
+    //         }
+    //         // process.stdout.write(data.toString());
+    //     });
 
-        child.stderr.on('data', function (data) {
-            process.stdout.write(data.toString());
-        });
-    } catch (ex) {
-        process.stdout.write(ex.toString());
-    }
+    //     child.stderr.on('data', function (data) {
+    //         process.stdout.write(data.toString());
+    //     });
+    // } catch (ex) {
+    //     process.stdout.write(ex.toString());
+    // }
 });
