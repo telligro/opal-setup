@@ -39,7 +39,7 @@ function getOpalModulePath(modName) {
     let modPath = path.join(__dirname, '..', modName);
     if (!fs.existsSync(modPath)) {
         console.log('Checking Local')
-        modPath = path.join(__dirname, 'node_modules', '@telligro', modName);
+        modPath = path.join(__dirname, 'node_modules', modName);
         if (!fs.existsSync(modPath)) {
             console.error('OPAL nodes are missing. Setup will terminate');
             return;
@@ -56,55 +56,55 @@ fs.readFile(path.join(__dirname, 'package.json'), { encoding: 'utf8' }, (err, co
     }
     var packageJSON = JSON.parse(content);
     var opalNodes = Object.keys(packageJSON.dependencies)
-        .filter(dep => (dep.indexOf('@telligro/opal-node-') !== -1 || dep.indexOf('@telligro/opal-node-')) !== -1 && dep != '@telligro/opal-node-red')
-        .map(dep => dep.replace('@telligro/', ''));
+        .filter(dep => (dep.indexOf('opal-node-') !== -1 || dep.indexOf('opal-node-')) !== -1 && dep != 'opal-node-red')
+        .map(dep => dep.replace('', ''));
 
     // console.log(__dirname);
     // console.log(process.cwd());
     var nodeRedHome = path.join(process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'], '.node-red');
-    shell.mkdir('-p', nodeRedHome);
-    opalNodes.forEach(opalNode => {
-        console.log('Linking module:%s', opalNode);
-        let opalNodePath = getOpalModulePath(opalNode);
-        if (undefined === opalNodePath) {
-            console.error('OPAL nodes are missing. Setup will terminate');
-            process.exit(1);
-        }
-        console.log('npm link from %s', opalNodePath);
-        shell.cd(opalNodePath);
-        shell.exec('npm link');
+    // shell.mkdir('-p', nodeRedHome);
+    // opalNodes.forEach(opalNode => {
+    //     console.log('Linking module:%s', opalNode);
+    //     let opalNodePath = getOpalModulePath(opalNode);
+    //     if (undefined === opalNodePath) {
+    //         console.error('OPAL nodes are missing. Setup will terminate');
+    //         process.exit(1);
+    //     }
+    //     console.log('npm link from %s', opalNodePath);
+    //     shell.cd(opalNodePath);
+    //     shell.exec('npm link');
 
-        console.log('npm link %s from %s', opalNode, nodeRedHome);
-        shell.cd(nodeRedHome);
-        shell.exec('npm link ' + '@telligro/' + opalNode);
+    //     console.log('npm link %s from %s', opalNode, nodeRedHome);
+    //     shell.cd(nodeRedHome);
+    //     shell.exec('npm link ' + '' + opalNode);
         
-    });
-    try {
-        let nodeRedPath = getOpalModulePath('opal-node-red');
-        if (undefined === nodeRedPath) {
-            console.error('OPAL node-red is missing. Setup will terminate');
-            process.exit(1);
-        }
-        child = require('child_process').execFile('node', [
-            path.join(nodeRedPath, 'red.js')]);
-        // use event hooks to provide a callback to execute when data are available: 
+    // });
+    // try {
+    //     let nodeRedPath = getOpalModulePath('opal-node-red');
+    //     if (undefined === nodeRedPath) {
+    //         console.error('OPAL node-red is missing. Setup will terminate');
+    //         process.exit(1);
+    //     }
+    //     child = require('child_process').execFile('node', [
+    //         path.join(nodeRedPath, 'red.js')]);
+    //     // use event hooks to provide a callback to execute when data are available: 
 
-        child.stdout.on('data', function (data) {
-            if (data.indexOf('Server now running')!==-1){
-                console.log('Installation Complete');
-                process.exit(0);
-            } else if (data.indexOf('error')!==-1){
-                process.stdout.write(data.toString());
-                console.warn('There were error during setup. Setup could not complete.');
-                process.exit(0);
-            }
-            // process.stdout.write(data.toString());
-        });
+    //     child.stdout.on('data', function (data) {
+    //         if (data.indexOf('Server now running')!==-1){
+    //             console.log('Installation Complete');
+    //             process.exit(0);
+    //         } else if (data.indexOf('error')!==-1){
+    //             process.stdout.write(data.toString());
+    //             console.warn('There were error during setup. Setup could not complete.');
+    //             process.exit(0);
+    //         }
+    //         // process.stdout.write(data.toString());
+    //     });
 
-        child.stderr.on('data', function (data) {
-            process.stdout.write(data.toString());
-        });
-    } catch (ex) {
-        process.stdout.write(ex.toString());
-    }
+    //     child.stderr.on('data', function (data) {
+    //         process.stdout.write(data.toString());
+    //     });
+    // } catch (ex) {
+    //     process.stdout.write(ex.toString());
+    // }
 });
