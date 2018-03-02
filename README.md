@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/telligro/opal-node-red.svg?branch=master)](https://travis-ci.org/telligro/opal-node-red) [![npm (scoped)](https://img.shields.io/npm/v/@telligro/opal-setup.svg)](https://www.npmjs.com/package/@telligro/opal-setup) [![license](https://img.shields.io/github/license/telligro/opal-setup.svg)](LICENSE)
+[![Build Status](https://travis-ci.org/telligro/opal-node-red.svg?branch=master)](https://travis-ci.org/telligro/opal-node-red) [![npm (scoped)](https://img.shields.io/npm/v/opal-setup.svg)](https://www.npmjs.com/package/opal-setup) [![license](https://img.shields.io/github/license/telligro/opal-setup.svg)](LICENSE)
 ## Getting Started
 #### Requirements
 
@@ -22,7 +22,7 @@ If portable git used ensure that git.exe is available on your path.
 - Navigate to a installation directory (Create a new one if needed)
 - Install and Start OPAL-Node-RED
 ```
-npm install @telligro/opal-setup
+npm install opal-setup
 node_modules\.bin\opal-run.cmd
 ```
 - Open chrome browser and navigate to http://localhost:1880 to access the Editor
