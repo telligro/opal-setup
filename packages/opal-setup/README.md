@@ -3,7 +3,7 @@
 #### Requirements
 
 **node**: 8.9.x LTS  
-**npm**: 5.5.x  
+**npm**: 5.x 
 **Git**: 1.8+  
 
 **Note**: The current release requires Git to be available on your environment path. Please refer to the Git Setup section.
