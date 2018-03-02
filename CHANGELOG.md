@@ -1,3 +1,17 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+<a name="0.4.6"></a>
+## [0.4.6](https://github.com/telligro/orpa-setup/compare/v0.3.1...v0.4.6) (2018-03-02)
+
+
+
+
+
+**Note:** Version bump only for package undefined
+
 <a name=""></a>
 # [](https://github.com/shivamadhavan/opal-setup/compare/v0.4.5...v) (2018-03-02)
 
@@ -140,6 +154,3 @@
 ### Features
 
 * **package:** add pdfreader ([f20379d](https://github.com/shivamadhavan/opal-setup/commit/f20379d))
-
-
-
